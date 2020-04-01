@@ -132,6 +132,7 @@
     </div>
 </div>
 
+<div id="comments" style="margin: 0px 12rem"></div>
 
 <footer class="footer">
     <ul class="list-inline text-center">
@@ -187,12 +188,34 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    // window.isPost = "false"
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+<script src="/js/Valine.min.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script>
+    var notify = 'false' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    var GUEST_INFO = ['nick','mail','link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+      return GUEST_INFO.indexOf(item) > -1
+    });
+    guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+    window.onload = function() {
+        new Valine({
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            app_id: "fSAUJI1Tc3i6IBLXP7AQCBMA-gzGzoHsz",
+            app_key: "qF097Omjj3uR3VEJz7Unn0qW",
+            avatar:"",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info:guest_info
+        });
+    }
+  </script>
 
 
 
