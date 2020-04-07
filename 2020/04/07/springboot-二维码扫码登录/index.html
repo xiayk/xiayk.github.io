@@ -95,7 +95,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java实现简单扫码登录功能"><span class="toc-text">java实现简单扫码登录功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码"><span class="toc-text">源码</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#springboot扫码登录功能"><span class="toc-text">springboot扫码登录功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码"><span class="toc-text">源码</span></a></li></ol>
 </div>
     
 </div>
@@ -147,7 +147,7 @@
 </span>
     </div>
     <div class="post-content ">
-        <h3 id="java实现简单扫码登录功能"><a href="#java实现简单扫码登录功能" class="headerlink" title="java实现简单扫码登录功能"></a>java实现简单扫码登录功能</h3><p>二维码扫码登陆的原理。先上二维码扫码登录的流程图：<br><img src="/images/blog_3/171333eac05db6cb.png" alt="流程图"></p>
+        <h3 id="springboot扫码登录功能"><a href="#springboot扫码登录功能" class="headerlink" title="springboot扫码登录功能"></a>springboot扫码登录功能</h3><p>二维码扫码登陆的原理。先上二维码扫码登录的流程图：<br><img src="/images/blog_3/171333eac05db6cb.png" alt="流程图"></p>
 <ol>
 <li>PC端访问后台接口生成登录二维码,UUID存入redis;<code>{key:UUID,value:0}</code></li>
 <li>PC端定时器轮询二维码状态,是否扫码/确认;</li>

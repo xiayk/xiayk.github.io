@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiayk.cn/"/>
-  <updated>2020-04-07T08:49:29.000Z</updated>
+  <updated>2020-04-07T09:54:39.000Z</updated>
   <id>https://xiayk.cn/</id>
   
   <author>
@@ -17,19 +17,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Springboot[二维码扫码登录]</title>
-    <link href="https://xiayk.cn/2020/04/07/springboot-%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95/"/>
-    <id>https://xiayk.cn/2020/04/07/springboot-二维码扫码登录/</id>
-    <published>2020-04-07T06:50:29.000Z</published>
-    <updated>2020-04-07T08:49:29.000Z</updated>
+    <title>Springboot[全局异常处理]</title>
+    <link href="https://xiayk.cn/2020/04/07/springboot-%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    <id>https://xiayk.cn/2020/04/07/springboot-全局异常处理/</id>
+    <published>2020-04-07T09:31:49.000Z</published>
+    <updated>2020-04-07T09:54:39.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="java实现简单扫码登录功能"><a href="#java实现简单扫码登录功能" class="headerlink" title="java实现简单扫码登录功能"></a>java实现简单扫码登录功能</h3><p>二维码扫码登陆的原理。先上二维码扫码登录的流程图：<br><img src="/images/blog_3/171333eac05db6cb.png" alt="流程图"></p><ol><li>PC端访问后台接口生成登录二维码,UUID存入redis;<code>{key:UUID,value:0}</code></li><li>PC端定时器轮询二维码状态,是否扫码/确认;</li><li>手机端扫码,解析二维码,提交到服务器;</li><li>后台获取扫码用户token和传入UUID,解析token获取uid存入redis<code>{key:UUID,value:uid}</code>, 验证接口返回扫码成功,等待确认登录;</li><li>手机端确认登录 ,PC端轮询 - 已确认,生成PC端token;</li></ol><p>PC 端接受到二维码 ID 之后，将二维码 ID 以二维码的形式展示获取直接返回byte[]，等待移动端扫码。此时在 PC 端会启动一个定时器，轮询查询二维码的状态。如果移动端未扫描的话，那么一段时间后二维码将会失效(redis中设置过期时间)。</p><h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a href="https://gitee.com/xiayk/xweb-demo/tree/master/qrcode" target="_blank" rel="noopener">GITEE</a></p><p><a href="https://github.com/xiayk/xweb-demo/tree/master/qrcode" target="_blank" rel="noopener">GIHUB</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="springboot全局异常处理"><a href="#springboot全局异常处理" class="headerlink" title="springboot全局异常处理"></a>springboot全局异常处理</h3><h5 id="注解-异常捕获"><a href="#注解-异常捕获" class="headerlink" title="注解 (异常捕获)"></a>注解 (异常捕获)</h5><p><code>@RestControllerAdvice</code> = <code>@ControllerAdvice</code> + <code>@ResponseBody</code></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * token异常</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1443386052898280663L</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">TokenException</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line"><span class="keyword">super</span>(msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created with IDEA</span></span><br><span class="line"><span class="comment"> * Description:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Auther</span>: xiayk</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2020/04/03 下午7:53</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * TokenException 类捕获</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="meta">@ExceptionHandler</span>(value = TokenException.class)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Result <span class="title">handler</span><span class="params">(TokenException e)</span> </span>&#123;</span><br><span class="line">    log.error(e.getMessage(), e);</span><br><span class="line">    <span class="keyword">return</span> Result.ofFail(<span class="number">401</span>, e.getMessage());</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * UserException 类捕获</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="meta">@ExceptionHandler</span>(value = UserException.class)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Result <span class="title">handler</span><span class="params">(UserException e)</span> </span>&#123;</span><br><span class="line">    log.error(e.getMessage(), e);</span><br><span class="line">    <span class="keyword">return</span> Result.ofFail(e.getCode(), e.getMessage());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="程序主动抛出异常"><a href="#程序主动抛出异常" class="headerlink" title="程序主动抛出异常"></a>程序主动抛出异常</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断是否有权限抛出异常</span></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> TokenException(<span class="string">"Token过期"</span>);</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;java实现简单扫码登录功能&quot;&gt;&lt;a href=&quot;#java实现简单扫码登录功能&quot; class=&quot;headerlink&quot; title=&quot;java实现简单扫码登录功能&quot;&gt;&lt;/a&gt;java实现简单扫码登录功能&lt;/h3&gt;&lt;p&gt;二维码扫码登陆的原理。先上二维码扫码登录的流
+        &lt;h3 id=&quot;springboot全局异常处理&quot;&gt;&lt;a href=&quot;#springboot全局异常处理&quot; class=&quot;headerlink&quot; title=&quot;springboot全局异常处理&quot;&gt;&lt;/a&gt;springboot全局异常处理&lt;/h3&gt;&lt;h5 id=&quot;注解-异常捕获&quot;&gt;
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="https://xiayk.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://xiayk.cn/tags/Java/"/>
+    
+      <category term="springboot" scheme="https://xiayk.cn/tags/springboot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Springboot[二维码扫码登录]</title>
+    <link href="https://xiayk.cn/2020/04/07/springboot-%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95/"/>
+    <id>https://xiayk.cn/2020/04/07/springboot-二维码扫码登录/</id>
+    <published>2020-04-07T06:50:29.000Z</published>
+    <updated>2020-04-07T09:34:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="springboot扫码登录功能"><a href="#springboot扫码登录功能" class="headerlink" title="springboot扫码登录功能"></a>springboot扫码登录功能</h3><p>二维码扫码登陆的原理。先上二维码扫码登录的流程图：<br><img src="/images/blog_3/171333eac05db6cb.png" alt="流程图"></p><ol><li>PC端访问后台接口生成登录二维码,UUID存入redis;<code>{key:UUID,value:0}</code></li><li>PC端定时器轮询二维码状态,是否扫码/确认;</li><li>手机端扫码,解析二维码,提交到服务器;</li><li>后台获取扫码用户token和传入UUID,解析token获取uid存入redis<code>{key:UUID,value:uid}</code>, 验证接口返回扫码成功,等待确认登录;</li><li>手机端确认登录 ,PC端轮询 - 已确认,生成PC端token;</li></ol><p>PC 端接受到二维码 ID 之后，将二维码 ID 以二维码的形式展示获取直接返回byte[]，等待移动端扫码。此时在 PC 端会启动一个定时器，轮询查询二维码的状态。如果移动端未扫描的话，那么一段时间后二维码将会失效(redis中设置过期时间)。</p><h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a href="https://gitee.com/xiayk/xweb-demo/tree/master/qrcode" target="_blank" rel="noopener">GITEE</a></p><p><a href="https://github.com/xiayk/xweb-demo/tree/master/qrcode" target="_blank" rel="noopener">GIHUB</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;springboot扫码登录功能&quot;&gt;&lt;a href=&quot;#springboot扫码登录功能&quot; class=&quot;headerlink&quot; title=&quot;springboot扫码登录功能&quot;&gt;&lt;/a&gt;springboot扫码登录功能&lt;/h3&gt;&lt;p&gt;二维码扫码登陆的原理。先上二
       
     
     </summary>
@@ -152,9 +179,9 @@
     
       <category term="springboot" scheme="https://xiayk.cn/tags/springboot/"/>
     
-      <category term="小程序" scheme="https://xiayk.cn/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
       <category term="wechat" scheme="https://xiayk.cn/tags/wechat/"/>
+    
+      <category term="小程序" scheme="https://xiayk.cn/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
   </entry>
   
