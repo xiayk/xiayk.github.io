@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiayk.cn/"/>
-  <updated>2020-04-04T13:59:36.000Z</updated>
+  <updated>2020-04-07T08:49:29.000Z</updated>
   <id>https://xiayk.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Springboot[二维码扫码登录]</title>
+    <link href="https://xiayk.cn/2020/04/07/springboot-%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95/"/>
+    <id>https://xiayk.cn/2020/04/07/springboot-二维码扫码登录/</id>
+    <published>2020-04-07T06:50:29.000Z</published>
+    <updated>2020-04-07T08:49:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="java实现简单扫码登录功能"><a href="#java实现简单扫码登录功能" class="headerlink" title="java实现简单扫码登录功能"></a>java实现简单扫码登录功能</h3><p>二维码扫码登陆的原理。先上二维码扫码登录的流程图：<br><img src="/images/blog_3/171333eac05db6cb.png" alt="流程图"></p><ol><li>PC端访问后台接口生成登录二维码,UUID存入redis;<code>{key:UUID,value:0}</code></li><li>PC端定时器轮询二维码状态,是否扫码/确认;</li><li>手机端扫码,解析二维码,提交到服务器;</li><li>后台获取扫码用户token和传入UUID,解析token获取uid存入redis<code>{key:UUID,value:uid}</code>, 验证接口返回扫码成功,等待确认登录;</li><li>手机端确认登录 ,PC端轮询 - 已确认,生成PC端token;</li></ol><p>PC 端接受到二维码 ID 之后，将二维码 ID 以二维码的形式展示获取直接返回byte[]，等待移动端扫码。此时在 PC 端会启动一个定时器，轮询查询二维码的状态。如果移动端未扫描的话，那么一段时间后二维码将会失效(redis中设置过期时间)。</p><h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a href="https://gitee.com/xiayk/xweb-demo/tree/master/qrcode" target="_blank" rel="noopener">GITEE</a></p><p><a href="https://github.com/xiayk/xweb-demo/tree/master/qrcode" target="_blank" rel="noopener">GIHUB</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;java实现简单扫码登录功能&quot;&gt;&lt;a href=&quot;#java实现简单扫码登录功能&quot; class=&quot;headerlink&quot; title=&quot;java实现简单扫码登录功能&quot;&gt;&lt;/a&gt;java实现简单扫码登录功能&lt;/h3&gt;&lt;p&gt;二维码扫码登陆的原理。先上二维码扫码登录的流
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="https://xiayk.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://xiayk.cn/tags/Java/"/>
+    
+      <category term="springboot" scheme="https://xiayk.cn/tags/springboot/"/>
+    
+  </entry>
   
   <entry>
     <title>Git常用命令</title>
@@ -65,9 +92,9 @@
       <category term="Java" scheme="https://xiayk.cn/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/Java/"/>
     
     
-      <category term="小程序" scheme="https://xiayk.cn/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
       <category term="Java" scheme="https://xiayk.cn/tags/Java/"/>
+    
+      <category term="小程序" scheme="https://xiayk.cn/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
   </entry>
   
@@ -92,9 +119,9 @@
       <category term="java" scheme="https://xiayk.cn/categories/java/"/>
     
     
-      <category term="java" scheme="https://xiayk.cn/tags/java/"/>
-    
       <category term="springboot" scheme="https://xiayk.cn/tags/springboot/"/>
+    
+      <category term="java" scheme="https://xiayk.cn/tags/java/"/>
     
       <category term="jwt" scheme="https://xiayk.cn/tags/jwt/"/>
     
@@ -121,13 +148,13 @@
       <category term="java" scheme="https://xiayk.cn/categories/java/"/>
     
     
-      <category term="小程序" scheme="https://xiayk.cn/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
       <category term="Java" scheme="https://xiayk.cn/tags/Java/"/>
     
-      <category term="wechat" scheme="https://xiayk.cn/tags/wechat/"/>
-    
       <category term="springboot" scheme="https://xiayk.cn/tags/springboot/"/>
+    
+      <category term="小程序" scheme="https://xiayk.cn/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="wechat" scheme="https://xiayk.cn/tags/wechat/"/>
     
   </entry>
   
