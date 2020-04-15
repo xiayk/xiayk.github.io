@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xiayk.cn/2020/04/09/Git-git-push%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/</loc>
+    
+    <lastmod>2020-04-15T07:12:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xiayk.cn/2019/06/28/springboot%E9%9B%86%E6%88%90jwt%E5%AE%9E%E7%8E%B0token%E9%AA%8C%E8%AF%81/</loc>
+    
+    <lastmod>2020-04-09T09:31:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xiayk.cn/2019/05/05/Linux%E4%B8%8BNginx-Tomcat%E6%95%B4%E5%90%88%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2020-04-09T09:30:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xiayk.cn/2019/05/10/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-Java-%E7%99%BB%E5%BD%95/</loc>
+    
+    <lastmod>2020-04-09T09:30:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xiayk.cn/2020/04/07/springboot-%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</loc>
     
     <lastmod>2020-04-07T09:54:39.000Z</lastmod>
@@ -44,30 +72,9 @@
   </url>
   
   <url>
-    <loc>https://xiayk.cn/2019/05/10/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-Java-%E7%99%BB%E5%BD%95/</loc>
-    
-    <lastmod>2019-07-21T10:11:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xiayk.cn/2019/06/28/springboot%E9%9B%86%E6%88%90jwt%E5%AE%9E%E7%8E%B0token%E9%AA%8C%E8%AF%81/</loc>
-    
-    <lastmod>2019-06-28T20:05:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://xiayk.cn/categories/index.html</loc>
     
     <lastmod>2019-06-28T05:04:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xiayk.cn/2019/05/05/Linux%E4%B8%8BNginx-Tomcat%E6%95%B4%E5%90%88%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2019-06-28T05:02:36.000Z</lastmod>
     
   </url>
   
